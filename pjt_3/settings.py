@@ -20,9 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-import os, json
-
-SECRET_KEY = os.path.join(BASE_DIR, "secrets.json")
+SECRET_KEY = "django-insecure-=%3st^pjo0y2f1o@pr2q*q3+me)72ecr+_pv9^u7je!+=r=b(s"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "accounts",
     "reviews",
-    "django_bootstrap5",
+    "django_bootstrap5"
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
