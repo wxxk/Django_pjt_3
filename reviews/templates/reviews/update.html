@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}리뷰 작성{% endblock title %}
+
+{% block content %}
+<section class="container my-5">
+  <h1 class="text-center fw-bold mb-4">리뷰 작성</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form update_form %}
+    <input class="btn btn-outline-success" type="submit" value="제출하기">
+  </form>
+  <div class="buttons mt-3">
+    <a class="btn btn-outline-primary" href="{% url 'reviews:detail' num %}" role="button">뒤로가기</a>
+  </div>
+</section>
+{% endblock content %}

@@ -19,7 +19,7 @@
       <tr>
         <td>{{ review.title }}</td>
         <td>{{ review.movie_name }}</td>
-        <td><a class="btn btn-outline-secondary" href="#" role="button">더보기</a></td>
+        <td><a class="btn btn-outline-secondary" href="{% url 'reviews:detail' review.pk %}" role="button">더보기</a></td>
       </tr>
       {% endfor %}
     </tbody>
