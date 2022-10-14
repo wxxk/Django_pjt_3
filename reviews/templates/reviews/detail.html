@@ -1,29 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}리뷰 | {{ review.title }} {% endblock title %}
+{% block title %}리뷰 |
+  {{ review.title }}
+{% endblock title %}
 
 {% block content %}
-<section class="banner">
-  <div class="overlay-banner"></div>
-  <h1 class="review-title">Review</h1>  
-</section>
-<section class="main container my-5">
-  <h1 class="text-center fw-bold mb-4">{{ review.title }}</h1>
-  <div class="card">
-    <div class="card-body">
-      <h3 class="card-title">영화 : {{ review.movie_name }}</h3>
-      <h3 class="card-subtitle mb-2">리뷰 : {{ review.title }}</h3>
-      <h4 class="card-text text-muted">{{ review.created_at }} | {{ review.updated_at }}</h4>
-      <h4 class="card-text">점수 : {{ review.get_grade_display }}</h4>
-      <h4 class="card-text mt-3 text-bold">내용</h4>
-      <h4 class="card-text">{{ review.content }}</h4>
+  <section class="banner banner-detail">
+    <div class="overlay-banner"></div>
+    <h1 class="review-title">Review</h1>
+  </section>
+  <section class="main container my-5">
+    <h1 class="text-center fw-bold mb-4">{{ review.title }}</h1>
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">영화 :
+          {{ review.movie_name }}</h3>
+        <h3 class="card-subtitle mb-2">리뷰 :
+          {{ review.title }}</h3>
+        <h4 class="card-text text-muted">{{ review.created_at }}
+          |
+          {{ review.updated_at }}</h4>
+        <h4 class="card-text">점수 :
+          {{ review.get_grade_display }}</h4>
+        <h4 class="card-text mt-3 text-bold">내용</h4>
+        <h4 class="card-text">{{ review.content }}</h4>
+      </div>
     </div>
-  </div>
-  <div class="buttons mt-3">
-    <a class="btn btn-outline-danger" href="{% url 'reviews:update' review.pk %}" role="button">수정</a>
-    <a class="btn btn-outline-danger" href="{% url 'reviews:delete' review.pk %}" role="button">삭제하기</a>
-    <a class="btn btn-outline-primary" href="{% url 'reviews:index' %}" role="button">뒤로가기</a>
-  </div>
-</section>
+    <div class="buttons mt-3">
+      <a class="btn btn-outline-danger" href="{% url 'reviews:update' review.pk %}" role="button">수정</a>
+      <a class="btn btn-outline-danger" href="{% url 'reviews:delete' review.pk %}" role="button">삭제하기</a>
+      <a class="btn btn-outline-primary" href="{% url 'reviews:index' %}" role="button">뒤로가기</a>
+    </div>
+  </section>
 {% endblock content %}

@@ -3,12 +3,14 @@
 {% block title %}리뷰 목록{% endblock title %}
 
 {% block content %}
-  <img src="{% static '/images/banner.jpg' %}" class="w-100" style="height: 400px;">
+  <section class="banner banner-index">
+    <div class="overlay-banner"></div>
+    <h1 class="review-title">리뷰 목록</h1>
+  </section>
   <section class="main container my-5">
 
-    <h1 class="text-center fw-bold mb-4">리뷰 목록</h1>
     <a class="btn btn-outline-secondary" href="{% url 'reviews:create' %}" role="button">리뷰 작성</a>
-    <table class="table">
+    <table class="table text-center">
       <thead>
         <tr>
           <th scope="col">리뷰 제목</th>
@@ -16,7 +18,7 @@
           <th scope="col">더 보기</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table-group-divider">
         {% for review in reviews %}
           <tr>
             <td>{{ review.title }}</td>
