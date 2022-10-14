@@ -1,0 +1,23 @@
+.banner{
+  position: relative;
+  height: 300px;
+  width: 100%;
+  background-image: url('/static/images/tennis_racket_balls.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.overlay-banner{
+  height:300px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.review-title{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
