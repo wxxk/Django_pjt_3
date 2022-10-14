@@ -1,8 +1,15 @@
+.banner-detail{
+  background-image: url('/static/images/tennis_racket_balls.jpg');
+}
+
+.banner-index{
+  background-image: url('/static/images/banner.jpg');
+}
+
 .banner{
   position: relative;
   height: 300px;
   width: 100%;
-  background-image: url('/static/images/tennis_racket_balls.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
