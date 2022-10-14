@@ -1,35 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}index{% endblock title %}
 {% block content %}
-  <h1>
-    <a class="text-decoration-none text-dark" href="{% url 'accounts:index' %}">INDEX</a>
-  </h1>
-  {% if request.user.is_authenticated %}
-    <p>{{ user }}
-      <a href="{% url 'accounts:logout' %}">로그아웃</a>
-    </p>
-  </div>
-{% else %}
-  <a href="{% url 'accounts:signup' %}">회원가입</a>
-  <a href="{% url 'accounts:login' %}">로그인</a>
-{% endif %}
 
-<br><br>
-
-<div class="container px-5">
-  <div class="row">
-    {% for user in users %}
-      <div class="col-6 my-3">
-        <div class="container border h-100 py-5 text-center">
-          <h3 class="my-3">NO.
-            {{user.id}}</h3>
-          <h3 class="my-3">ID :
-            {{user.username}}</h3>
-          <hr>
-          <a class="btn fw-bolder border border-dark" href="{% url 'accounts:detail' user.pk %}">상세정보</a>
+  <div class="container mt-5 px-5">
+    <h3 class="text-center mb-3">회원목록</h3>
+    <div class="row justify-content-center">
+      {% for user in users %}
+        <div class="col-6 my-3">
+          <div class="container border h-100 py-5 text-center">
+            <h3 class="my-3">NO.
+              {{user.id}}</h3>
+            <h3 class="my-3">ID :
+              {{user.username}}</h3>
+            <hr>
+            <a class="btn fw-bolder border border-dark" href="{% url 'accounts:detail' user.id %}">상세정보</a>
+          </div>
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
-</div>
 {% endblock content %}

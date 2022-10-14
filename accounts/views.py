@@ -12,10 +12,14 @@ from django.contrib.auth import update_session_auth_hash
 # Create your views here.
 
 
+@login_required
 def index(request):
-    users = User.objects.all()
-    context = {"users": users}
-    return render(request, "accounts/index.html", context)
+    if request.user.is_superuser:
+        users = User.objects.all()
+        context = {"users": users}
+        return render(request, "accounts/index.html", context)
+    else:
+        return redirect("reviews:index")
 
 
 def signup(request):
@@ -24,7 +28,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            return redirect("accounts:index")
+            return redirect("reviews:index")
     else:
         form = CustomUserCreationForm()
     context = {
@@ -38,7 +42,7 @@ def login(request):
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect("accounts:index")
+            return redirect(request.GET.get("next") or "reviews:index")
     else:
         form = AuthenticationForm()
     context = {
@@ -49,27 +53,49 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    return redirect("accounts:index")
-
-
-def detail(request, pk):
-    user_detail = get_user_model().objects.get(pk=pk)
-    context = {
-        "user_detail": user_detail,
-    }
-    return render(request, "accounts/detail.html", context)
+    return redirect("reviews:index")
 
 
 @login_required
-def update(request, pk):
-    user = User.objects.get(pk=pk)
+def detail(request, pk):
+    if request.user.is_superuser:
+        user_detail = User.objects.get(pk=pk)
+        context = {
+            "user_detail": user_detail,
+        }
+        return render(request, "accounts/detail.html", context)
+    else:
+        return redirect("reviews:index")
+
+
+@login_required
+def detail_update(request, pk):
+    if request.user.is_superuser:
+        user = User.objects.get(pk=pk)
+        if request.method == "POST":
+            form = CustomUserChangeForm(request.POST, instance=user)
+            if form.is_valid():
+                form.save()
+                return redirect("accounts:detail", user.pk)
+        else:
+            form = CustomUserChangeForm(instance=user)
+        context = {
+            "form": form,
+        }
+        return render(request, "accounts/detail_update.html", context)
+    else:
+        return redirect("reviews:index")
+
+
+@login_required
+def update(request):
     if request.method == "POST":
-        form = CustomUserChangeForm(request.POST, instance=user)
+        form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect("accounts:detail", user.pk)
+            return redirect("accounts:profile")
     else:
-        form = CustomUserChangeForm(instance=user)
+        form = CustomUserChangeForm(instance=request.user)
     context = {
         "form": form,
     }
@@ -95,4 +121,13 @@ def change_password(request):
 def delete(request, pk):
     user = User.objects.get(pk=pk)
     user.delete()
-    return redirect("accounts:index")
+    return redirect("reviews:index")
+
+
+@login_required
+def profile(request):
+    profile = User.objects.get(pk=request.user.pk)
+    context = {
+        "profile": profile,
+    }
+    return render(request, "accounts/profile.html", context)
