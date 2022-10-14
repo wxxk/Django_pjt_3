@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+  <h1 class="text-center my-3">UPDATE</h1>
+  <div class="container">
+    <form action="" method="POST">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <div class="container">
+        <a class="btn border" href="{% url 'accounts:change_password' %}">비밀번호 변경</a>
+        <button type='submit' class="btn border">OK</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

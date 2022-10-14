@@ -2,5 +2,34 @@
 {% load django_bootstrap5 %}
 {% block title %}detail{% endblock title %}
 {% block content %}
-  <h1>{{user_detail.username}}</h1>
+  <div class="container">
+    <h1>상세정보</h1>
+    <hr>
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">NO</th>
+            <th scope="col">ID</th>
+            <th scope="col">JOIN</th>
+            <th scope="col">UPDATE</th>
+            <th scope="col">DLELETE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>{{user_detail.id}}</th>
+            <td>{{user_detail.username}}</td>
+            <td>{{user_detail.date_joined}}</td>
+            <td>
+              <a class="btn btn-success" href="{% url 'accounts:update' user_detail.pk %}">수정</a>
+            </td>
+            <td>
+              <a class="btn btn-danger" href="{% url 'accounts:delete' user_detail.pk %}">삭제</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 {% endblock content %}
