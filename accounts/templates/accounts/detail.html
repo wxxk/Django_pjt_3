@@ -22,7 +22,7 @@
             <td>{{user_detail.username}}</td>
             <td>{{user_detail.date_joined}}</td>
             <td>
-              <a class="btn btn-success" href="{% url 'accounts:update' user_detail.pk %}">수정</a>
+              <a class="btn btn-success" href="{% url 'accounts:detail_update' user_detail.pk %}">수정</a>
             </td>
             <td>
               <a class="btn btn-danger" href="{% url 'accounts:delete' user_detail.pk %}">삭제</a>
