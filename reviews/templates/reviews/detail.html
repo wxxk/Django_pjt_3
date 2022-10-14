@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}리뷰 | {{ review.title }} {% endblock title %}
 
 {% block content %}
+<section class="banner">
+  <div class="overlay-banner"></div>
+  <h1 class="review-title">Review</h1>  
+</section>
 <section class="main container my-5">
   <h1 class="text-center fw-bold mb-4">{{ review.title }}</h1>
   <div class="card">
