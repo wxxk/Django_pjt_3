@@ -412,4 +412,4 @@
   <h4 class="card-text">점수 : {{ review.get_grade_display }}</h4>
   ```
 
-  
+  end
